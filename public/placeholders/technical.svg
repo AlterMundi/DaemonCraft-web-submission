@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Ollama + Gemma 4 technical placeholder">
+  <rect width="1600" height="900" fill="#050B15"/>
+  <rect x="40" y="40" width="1520" height="820" rx="14" fill="#0A1428" stroke="#2C3E50"/>
+  <g font-family="JetBrains Mono, monospace" fill="#E8E8ED">
+    <text x="80" y="100" font-size="18" fill="#00D9FF">▸ ollama serve · gemma3 (local)</text>
+    <text x="80" y="160" font-size="14" opacity="0.85">POST /api/generate</text>
+    <text x="80" y="190" font-size="14" opacity="0.85">model: gemma3 · stream: false · format: json</text>
+
+    <text x="80" y="250" font-size="14" fill="#FFB800">prompt.world_state (compact)</text>
+    <text x="80" y="280" font-size="14" opacity="0.85">. . . T T . . .</text>
+    <text x="80" y="305" font-size="14" opacity="0.85">. . T T T . . .</text>
+    <text x="80" y="330" font-size="14" opacity="0.85">. . T @ . . . .</text>
+    <text x="80" y="355" font-size="14" opacity="0.85">. . . . . P . .</text>
+    <text x="80" y="385" font-size="12" opacity="0.55">@ = bot · P = player · T = tree</text>
+
+    <text x="80" y="450" font-size="14" fill="#FFB800">response.tool_call</text>
+    <text x="80" y="480" font-size="14" opacity="0.85">{"action": "mine", "target": "oak_log", "qty": 4}</text>
+
+    <text x="80" y="560" font-size="14" fill="#00D9FF">guardian.validate(tool_call) → ok</text>
+    <text x="80" y="590" font-size="14" fill="#00D9FF">mineflayer.dispatch(tool_call)</text>
+  </g>
+  <text x="800" y="850" text-anchor="middle" font-family="Chakra Petch, sans-serif" font-size="20" fill="#95A5A6">Gemma 4 / Ollama loop placeholder · captura limpia pendiente</text>
+</svg>

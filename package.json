@@ -1,0 +1,24 @@
+{
+  "name": "daemoncraft-submission-hub",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev --port 8772 --host",
+    "start": "astro dev --port 8772 --host",
+    "build": "astro build",
+    "preview": "astro preview --port 8772"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.0.0",
+    "@astrojs/tailwind": "^6.0.0",
+    "@gsap/react": "^2.1.1",
+    "astro": "^5.0.0",
+    "gsap": "^3.12.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "skinview3d": "^3.4.1",
+    "tailwindcss": "^3.4.0",
+    "three": "0.156.1"
+  }
+}

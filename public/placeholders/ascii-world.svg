@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-label="ASCII world_state placeholder">
+  <rect width="1200" height="700" fill="#050B15"/>
+  <rect x="40" y="40" width="1120" height="620" rx="14" fill="#0A1428" stroke="#2C3E50"/>
+  <g font-family="JetBrains Mono, monospace" fill="#80EAFF" font-size="22">
+    <text x="80" y="100">. . . . T T T . . . .</text>
+    <text x="80" y="135">. . . T T T T T . . .</text>
+    <text x="80" y="170">. . T T T T T T T . .</text>
+    <text x="80" y="205">. . . . . . . . . . .</text>
+    <text x="80" y="240">. . . . . S S S . . .</text>
+    <text x="80" y="275">. . . . . S S S . . .</text>
+    <text x="80" y="310">. . . . . . . . . . .</text>
+    <text x="80" y="345">. . . . . . . . . . .</text>
+    <text x="80" y="380">. . . . . @ . P . . .</text>
+    <text x="80" y="415">. . . . . . . . . . .</text>
+    <text x="80" y="450">. . . . . . . . . . .</text>
+    <text x="80" y="485">. . R R . . . . . . .</text>
+    <text x="80" y="520">. . R R . . . . . . .</text>
+  </g>
+  <g font-family="Chakra Petch, sans-serif" fill="#E8E8ED" font-size="18">
+    <text x="700" y="120" fill="#FFB800">LEGEND</text>
+    <text x="700" y="160">@ bot (Gemma-Andy)</text>
+    <text x="700" y="190">P player</text>
+    <text x="700" y="220">T tree / wood</text>
+    <text x="700" y="250">S stone</text>
+    <text x="700" y="280">R water</text>
+    <text x="700" y="310">. open ground</text>
+    <text x="700" y="380" opacity="0.7">compact spatial grid</text>
+    <text x="700" y="404" opacity="0.7">11 × 13 local window</text>
+    <text x="700" y="428" opacity="0.7">no raw game dump</text>
+  </g>
+</svg>

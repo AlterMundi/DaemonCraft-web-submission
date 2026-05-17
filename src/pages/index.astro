@@ -1,0 +1,519 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ArchitectureDiagram from '../components/ArchitectureDiagram.astro';
+import AllayThree from '../components/AllayThree.jsx';
+import { submission as s } from '../data/submission.js';
+
+const c = s.copy;
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title="DaemonCraft · Gemma 4 Good Hackathon · submission hub"
+  description="Local-first embodied companion in Minecraft. Hermes drives the narrative; Gemma-Andy drives the body. Submission hub for the Gemma 4 Good Hackathon."
+>
+  <!-- TOP NAV -->
+  <nav class="fixed top-0 inset-x-0 z-50 bg-navy-deep/80 backdrop-blur border-b border-daemon/15">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between text-sm gap-4">
+      <a href="#top" class="font-display tracking-widest text-cream uppercase">DaemonCraft</a>
+      <div class="hidden md:flex gap-6 font-pixel text-[10px] tracking-[0.3em] text-cream/70 items-center">
+        <a href="#video" class="hover:text-daemon transition">video</a>
+        <a href="#architecture" class="hover:text-daemon transition">architecture</a>
+        <a href="#gemma" class="hover:text-daemon transition">gemma 4</a>
+        <a href="#results" class="hover:text-daemon transition">results</a>
+        <a href="#gallery" class="hover:text-daemon transition">gallery</a>
+        <a href="#install" class="hover:text-grass-light transition">install</a>
+        <a href="#links" class="hover:text-daemon transition">links</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top" class="relative">
+    <!-- ============================================================ -->
+    <!-- 1 · HERO                                                     -->
+    <!-- ============================================================ -->
+    <section id="submission" class="relative min-h-[90vh] flex items-center px-6 pt-28 pb-20 overflow-hidden">
+      <div class="absolute inset-0">
+        <img src={`${base}${s.cover_image.replace(/^\//,'')}`} alt="" class="w-full h-full object-cover opacity-50" />
+        <div class="absolute inset-0 bg-gradient-to-b from-navy-deep/70 via-navy-deep/85 to-navy-deep"></div>
+      </div>
+
+      <div class="relative max-w-6xl mx-auto w-full">
+        <div class="grid md:grid-cols-[1fr_220px] gap-6 md:gap-10 items-center">
+          <!-- Text column -->
+          <div>
+            <h1 class="font-display text-6xl md:text-8xl uppercase text-cream leading-[0.95] neon-cyan mb-5">
+              {c.hero_title}
+            </h1>
+            <p class="text-xl md:text-2xl text-cream/90 max-w-xl mb-6 leading-snug">
+              Un compañero agente de IA con cuerpo en Minecraft.
+            </p>
+            <p class="text-base md:text-lg text-cream/70 max-w-xl mb-10 leading-relaxed">
+              {c.hero_line}
+            </p>
+
+            <div class="flex flex-wrap gap-3">
+              <a href="#video" class="px-6 py-3 font-display text-sm uppercase tracking-widest bg-daemon text-navy-deep rounded hover:bg-daemon-light transition">
+                {c.cta_primary} →
+              </a>
+              <a href="#full-session" class="px-6 py-3 font-display text-sm uppercase tracking-widest border-2 border-cream/40 text-cream hover:border-daemon hover:text-daemon transition rounded">
+                {c.cta_secondary}
+              </a>
+            </div>
+          </div>
+
+          <!-- 3D Allay as detail -->
+          <div class="hidden md:block">
+            <AllayThree client:load base={base} scale={1.1} compact={true} />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 2 · PROBLEM                                                  -->
+    <!-- ============================================================ -->
+    <section class="px-6 py-24">
+      <div class="max-w-3xl mx-auto">
+        <div class="inline-block mb-4 px-3 py-1 border border-grass/40 bg-grass/5">
+          <span class="font-pixel text-[10px] tracking-[0.35em] text-grass-light uppercase">§ problem</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl text-cream uppercase mb-6">
+          Screens default to passive consumption.<br/>
+          Kids are already creating.
+        </h2>
+        <div class="text-cream/80 text-lg space-y-4 leading-relaxed">
+          <p>Most companions in front of children today are abstract chat windows that don't know them, don't act with them, and send their data to a server on another continent.</p>
+          <p>They already inhabit worlds where they build, explore and play together. What is missing is a <strong class="text-cream">local, safe, visible companion</strong> that lives inside that world — not on a side panel.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 3 · WHAT THE DEMO SHOWS                                      -->
+    <!-- ============================================================ -->
+    <section class="px-6 py-24 bg-navy-deep/40 border-y border-cream/10">
+      <div class="max-w-5xl mx-auto">
+        <div class="inline-block mb-4 px-3 py-1 border border-daemon/40 bg-daemon/5">
+          <span class="font-pixel text-[10px] tracking-[0.35em] text-daemon uppercase">§ what the demo shows</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl text-cream uppercase mb-6">
+          A live embodied system,<br/>not a chatbot mockup.
+        </h2>
+        <p class="text-cream/80 text-lg max-w-3xl leading-relaxed mb-10">{c.demo_short}</p>
+
+        <ul class="grid sm:grid-cols-2 gap-4">
+          {s.highlights.map((h) => (
+            <li class="flex items-start gap-3 p-4 border border-cream/10 bg-navy-deep/50 rounded">
+              <span class="text-holodeck font-display text-2xl leading-none">{h.icon}</span>
+              <span class="text-cream font-display tracking-wide uppercase text-sm pt-1">{h.label}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 4 · MAIN VIDEO                                               -->
+    <!-- ============================================================ -->
+    <section id="video" class="px-6 py-24">
+      <div class="max-w-5xl mx-auto">
+        <div class="inline-block mb-4 px-3 py-1 border border-holodeck/40 bg-holodeck/5">
+          <span class="font-pixel text-[10px] tracking-[0.35em] text-holodeck uppercase">§ 3-minute submission</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl text-cream uppercase mb-8">
+          Watch the {c.hero_title} demo.
+        </h2>
+
+        <div class="aspect-video bg-navy-deep border-2 border-daemon/30 rounded-lg overflow-hidden relative">
+          {s.video_principal_url ? (
+            <iframe
+              class="w-full h-full"
+              src={s.video_principal_url}
+              title={s.video_principal_title}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          ) : (
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+              <div class="font-pixel text-[10px] tracking-[0.4em] text-daemon mb-3 uppercase">▸ video placeholder</div>
+              <p class="font-display text-2xl text-cream mb-2">main video · 2:20 – 2:50</p>
+              <p class="text-cream/60 text-sm max-w-md">Add the YouTube embed URL in <code class="text-daemon">src/data/submission.js</code> → <code class="text-daemon">video_principal_url</code>.</p>
+            </div>
+          )}
+        </div>
+
+        <p class="text-cream/60 text-sm mt-4 italic">
+          Cold open · problem · solution · architecture · Gemma 4 in the loop · evidence · limits · close.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 5 · ARCHITECTURE                                             -->
+    <!-- ============================================================ -->
+    <section id="architecture" class="px-6 py-24 bg-navy-deep/40 border-y border-cream/10">
+      <div class="max-w-6xl mx-auto">
+        <div class="inline-block mb-4 px-3 py-1 border border-daemon/40 bg-daemon/5">
+          <span class="font-pixel text-[10px] tracking-[0.35em] text-daemon uppercase">§ architecture</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl text-cream uppercase mb-8">
+          One companion, two minds, one world.
+        </h2>
+
+        <ArchitectureDiagram />
+
+        <div class="grid md:grid-cols-2 gap-8 mt-12 text-lg">
+          <blockquote class="border-l-4 border-daemon pl-4 text-cream/90 italic leading-relaxed">
+            "{c.architecture_quote}"
+          </blockquote>
+          <blockquote class="border-l-4 border-holodeck pl-4 text-cream/90 italic leading-relaxed">
+            "{c.world_state_quote}"
+          </blockquote>
+        </div>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-5 gap-3 mt-10">
+          {s.architecture.map((n) => (
+            <div class="p-4 border border-cream/15 bg-navy-deep/60 rounded">
+              <div class="font-display text-sm uppercase tracking-wider text-cream">{n.label}</div>
+              <div class="font-pixel text-[9px] tracking-[0.2em] text-cream/55 mt-2 uppercase">{n.sub}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 6 · WHY GEMMA 4                                              -->
+    <!-- ============================================================ -->
+    <section id="gemma" class="px-6 py-24">
+      <div class="max-w-6xl mx-auto">
+        <div class="inline-block mb-4 px-3 py-1 border border-holodeck/40 bg-holodeck/5">
+          <span class="font-pixel text-[10px] tracking-[0.35em] text-holodeck uppercase">§ why gemma 4</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl text-cream uppercase mb-6">
+          Local. Auditable. Honest.
+        </h2>
+        <p class="text-cream/80 text-lg max-w-3xl leading-relaxed mb-4">{c.gemma_short}</p>
+        <p class="text-cream/80 text-lg max-w-3xl leading-relaxed mb-12">{c.world_state_short}</p>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {s.gemma_reasons.map((r) => (
+            <div class="p-5 border border-cream/15 bg-navy-deep/50 rounded hover:border-holodeck/50 transition">
+              <h3 class="font-display text-lg uppercase tracking-wide text-holodeck mb-2">{r.title}</h3>
+              <p class="text-cream/75 text-sm leading-relaxed">{r.body}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-10 p-4 border border-daemon/30 bg-daemon/5 rounded inline-flex items-center gap-3">
+          <span class="font-pixel text-[10px] tracking-[0.3em] text-daemon">▸ runs via</span>
+          <a href={s.ollama_model_url} target="_blank" rel="noopener" class="font-display text-cream uppercase tracking-wider hover:text-daemon transition">Ollama · gemma3</a>
+        </div>
+
+        <div class="mt-10">
+          <div class="font-pixel text-[10px] tracking-[0.3em] text-cream/50 uppercase mb-2">compact world_state</div>
+          <img src={`${base}${s.ascii_world_state_image.replace(/^\//,'')}`} alt="ASCII spatial grid sent to Gemma-Andy as compact world_state" class="w-full max-w-3xl rounded border border-cream/10" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 7 · RESULTS                                                  -->
+    <!-- ============================================================ -->
+    <section id="results" class="px-6 py-24 bg-navy-deep/40 border-y border-cream/10">
+      <div class="max-w-5xl mx-auto">
+        <div class="inline-block mb-4 px-3 py-1 border border-grass/40 bg-grass/5">
+          <span class="font-pixel text-[10px] tracking-[0.35em] text-grass-light uppercase">§ results</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl text-cream uppercase mb-8">
+          Measured, not claimed.
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-4">
+          {s.results.map((r) => (
+            <div class="p-6 border border-cream/15 bg-navy-deep/60 rounded">
+              <div class="font-pixel text-[9px] tracking-[0.3em] text-cream/55 uppercase mb-2">{r.label}</div>
+              <div class="font-display text-3xl text-daemon mb-4">{r.value}</div>
+              <p class="text-cream/75 text-sm leading-relaxed">{r.detail}</p>
+            </div>
+          ))}
+        </div>
+
+        <p class="text-cream/60 text-sm mt-8 italic max-w-3xl">
+          Wording is deliberately careful: <em>measured subset</em>, <em>post-mitigation critical subset</em>, <em>real sessions</em>. Numbers from different cuts are not mixed together.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 8 · LIMITS AND MITIGATION                                    -->
+    <!-- ============================================================ -->
+    <section class="px-6 py-24">
+      <div class="max-w-3xl mx-auto">
+        <div class="inline-block mb-4 px-3 py-1 border border-rolemaster/40 bg-rolemaster/10">
+          <span class="font-pixel text-[10px] tracking-[0.35em] text-cream/80 uppercase">§ limits &amp; mitigation</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl text-cream uppercase mb-6">
+          Not everything is delegated.<br/>That is the design.
+        </h2>
+        <p class="text-cream/80 text-lg leading-relaxed mb-4">{c.limits_short}</p>
+        <ul class="text-cream/75 text-lg leading-relaxed space-y-2 mt-6">
+          <li class="flex gap-3"><span class="text-daemon">▸</span> Ambiguity and out-of-scope requests are filtered upstream.</li>
+          <li class="flex gap-3"><span class="text-daemon">▸</span> Safety policy runs before any tool call reaches the world.</li>
+          <li class="flex gap-3"><span class="text-daemon">▸</span> Gemma-Andy absorbs only what we already measure as reliable.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 9 · FULL SESSION / TECHNICAL EVIDENCE                        -->
+    <!-- ============================================================ -->
+    <section id="full-session" class="px-6 py-24 bg-navy-deep/40 border-y border-cream/10">
+      <div class="max-w-5xl mx-auto">
+        <div class="inline-block mb-4 px-3 py-1 border border-daemon/40 bg-daemon/5">
+          <span class="font-pixel text-[10px] tracking-[0.35em] text-daemon uppercase">§ full session</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl text-cream uppercase mb-3">
+          Uncut. Live. Auditable.
+        </h2>
+        <p class="text-cream/70 text-lg max-w-3xl leading-relaxed mb-8">{c.full_session_short}</p>
+
+        <div class="aspect-video bg-navy-deep border-2 border-cream/15 rounded-lg overflow-hidden relative">
+          {s.video_largo_url ? (
+            <iframe
+              class="w-full h-full"
+              src={s.video_largo_url}
+              title={s.video_largo_title}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          ) : (
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+              <div class="font-pixel text-[10px] tracking-[0.4em] text-cream/70 mb-3 uppercase">▸ video placeholder</div>
+              <p class="font-display text-2xl text-cream mb-2">full session · 10–20 min</p>
+              <p class="text-cream/60 text-sm max-w-md">Add the YouTube embed URL in <code class="text-daemon">submission.js</code> → <code class="text-daemon">video_largo_url</code>.</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 10 · GALLERY                                                 -->
+    <!-- ============================================================ -->
+    <section id="gallery" class="px-6 py-24">
+      <div class="max-w-6xl mx-auto">
+        <div class="inline-block mb-4 px-3 py-1 border border-holodeck/40 bg-holodeck/5">
+          <span class="font-pixel text-[10px] tracking-[0.35em] text-holodeck uppercase">§ gallery</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl text-cream uppercase mb-10">
+          Six images, one story.
+        </h2>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {s.gallery.map((g) => {
+            const map = {
+              cover: s.cover_image,
+              gameplay_1: s.gameplay_1,
+              gameplay_2: s.gameplay_2,
+              dashboard: s.dashboard_image,
+              technical: s.technical_image,
+              architecture: s.architecture_diagram,
+            };
+            const src = map[g.key];
+            return (
+              <figure class="group relative overflow-hidden rounded border border-cream/15 bg-navy-deep/60">
+                <img
+                  src={`${base}${src.replace(/^\//,'')}`}
+                  alt={g.title}
+                  loading="lazy"
+                  class="w-full h-48 object-cover transition group-hover:scale-[1.02]"
+                />
+                <figcaption class="p-4 border-t border-cream/10">
+                  <div class="font-display text-sm uppercase tracking-wider text-daemon">{g.title}</div>
+                  <p class="text-cream/65 text-xs mt-1 leading-snug">{g.caption}</p>
+                </figcaption>
+              </figure>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 10b · INSTALL LOCAL                                          -->
+    <!-- ============================================================ -->
+    <section id="install" class="px-6 py-24">
+      <div class="max-w-5xl mx-auto">
+        <div class="inline-block mb-4 px-3 py-1 border border-grass/40 bg-grass/5">
+          <span class="font-pixel text-[10px] tracking-[0.35em] text-grass-light uppercase">§ install local</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl text-cream uppercase mb-4">
+          Run DaemonCraft on your machine.
+        </h2>
+        <p class="text-cream/75 text-lg max-w-3xl leading-relaxed mb-12">
+          Open source. Three steps to a working bot inside your local Minecraft server.
+        </p>
+
+        <!-- Step 01: Antigravity -->
+        <div class="mb-6 p-6 border-2 border-daemon/30 bg-navy-deep/50 rounded-lg">
+          <div class="flex items-start gap-4">
+            <div class="font-display text-3xl text-daemon shrink-0 leading-none">01</div>
+            <div class="flex-1">
+              <h3 class="font-display text-xl uppercase text-cream tracking-wide mb-2">
+                Install <a href={s.antigravity_url} target="_blank" rel="noopener" class="text-daemon hover:underline">Antigravity</a>
+              </h3>
+              <p class="text-cream/75 leading-relaxed">
+                Google's AI-native IDE. While you set DaemonCraft up, it reads your errors and suggests fixes.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 02: Clone the game repo -->
+        <div class="mb-6 p-6 border-2 border-daemon/30 bg-navy-deep/50 rounded-lg">
+          <div class="flex items-start gap-4">
+            <div class="font-display text-3xl text-daemon shrink-0 leading-none">02</div>
+            <div class="flex-1">
+              <h3 class="font-display text-xl uppercase text-cream tracking-wide mb-2">
+                Clone the game repo
+              </h3>
+              <p class="text-cream/75 leading-relaxed mb-3">
+                Ask Antigravity to clone <a href={s.repo_public_url} target="_blank" rel="noopener" class="text-daemon hover:underline font-mono text-base">DaemonCraft</a> and follow its README. Server, bots, and embodied-service all live in this single repo.
+              </p>
+              <code class="block font-mono text-xs text-daemon/80 bg-navy-deep/80 px-3 py-2 rounded border border-daemon/20 overflow-x-auto">
+                git clone https://github.com/nicoechaniz/DaemonCraft
+              </code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 03: Play -->
+        <div class="p-6 border-2 border-grass/30 bg-navy-deep/50 rounded-lg">
+          <div class="flex items-start gap-4">
+            <div class="font-display text-3xl text-grass-light shrink-0 leading-none">03</div>
+            <div class="flex-1">
+              <h3 class="font-display text-xl uppercase text-cream tracking-wide mb-2">
+                Play
+              </h3>
+              <p class="text-cream/75 leading-relaxed mb-3">
+                Once everything is up, join the local Minecraft server and type in chat:
+              </p>
+              <code class="block font-mono text-sm text-grass-light bg-navy-deep/80 px-4 py-3 rounded border border-grass/20">
+                @yourAgentName follow me
+              </code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Advanced · Gemma-Andy LoRA adapter -->
+        <div class="mt-12 p-6 border border-holodeck/30 bg-holodeck/5 rounded-lg">
+          <div class="font-pixel text-[10px] tracking-[0.35em] text-holodeck uppercase mb-3">advanced · the body orchestrator</div>
+          <h3 class="font-display text-2xl uppercase text-cream tracking-wide mb-3">
+            Gemma-Andy
+          </h3>
+          <p class="text-cream/75 leading-relaxed mb-4">
+            A LoRA adapter on top of Gemma 4 E4B-it, specialised as a body orchestrator. It receives a JSON request — intent, world state, allowed tools, constraints — and returns a JSON plan: <code class="font-mono text-sm text-holodeck">body_plan</code>, <code class="font-mono text-sm text-holodeck">checks</code>, <code class="font-mono text-sm text-holodeck">tool_calls</code>, <code class="font-mono text-sm text-holodeck">failure_policy</code>, <code class="font-mono text-sm text-holodeck">operational_risk</code>. JSON only, never prose.
+          </p>
+          <p class="text-cream/75 leading-relaxed mb-5">
+            You don't need it to play DaemonCraft. The adapter, training methodology, schema and field-validated reliability numbers live in their own project — clone it if you want to train your own body model, serve it via Ollama, or reproduce the measurements.
+          </p>
+          <a
+            href={s.repo_finetune_url}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 px-4 py-2 border border-holodeck/60 text-holodeck font-pixel text-[10px] tracking-[0.3em] uppercase hover:bg-holodeck hover:text-navy-deep transition rounded"
+          >
+            ▸ open the Gemma-Andy repo
+          </a>
+        </div>
+
+        <!-- Contact block -->
+        <div class="mt-10 p-6 border border-cream/20 bg-navy-deep/60 rounded-lg">
+          <div class="font-pixel text-[10px] tracking-[0.35em] text-cream/70 uppercase mb-3">contact</div>
+          <h3 class="font-display text-lg uppercase text-cream tracking-wide mb-1">
+            Asociación Civil AlterMundi
+          </h3>
+          <p class="text-cream/65 text-sm mb-5">Córdoba, Argentina</p>
+          <p class="text-cream/80 text-sm">
+            Más información ·
+            <a href="mailto:info@altermundi.net" class="text-daemon hover:underline">info@altermundi.net</a>
+            ·
+            <a href="tel:+5493547469632" class="text-daemon hover:underline">+54 9 3547 469632</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 11 · LINKS                                                   -->
+    <!-- ============================================================ -->
+    <section id="links" class="px-6 py-24 bg-navy-deep/60 border-y border-cream/10">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-block mb-4 px-3 py-1 border border-daemon/40 bg-daemon/5">
+          <span class="font-pixel text-[10px] tracking-[0.35em] text-daemon uppercase">§ links</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl text-cream uppercase mb-10">
+          Everything in one place.
+        </h2>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <a
+            href={s.repo_public_url}
+            target="_blank"
+            rel="noopener"
+            class="p-6 border-2 border-daemon/40 bg-navy-deep/60 hover:border-daemon hover:bg-daemon/5 rounded transition block"
+          >
+            <div class="font-pixel text-[10px] tracking-[0.3em] text-daemon mb-2">▸ game repo</div>
+            <div class="font-display text-lg text-cream uppercase">DaemonCraft</div>
+            <p class="text-cream/60 text-sm mt-2">Server, bots, embodied-service, docs.</p>
+          </a>
+
+          <a
+            href={s.repo_finetune_url}
+            target="_blank"
+            rel="noopener"
+            class="p-6 border-2 border-holodeck/40 bg-navy-deep/60 hover:border-holodeck hover:bg-holodeck/5 rounded transition block"
+          >
+            <div class="font-pixel text-[10px] tracking-[0.3em] text-holodeck mb-2">▸ fine-tune repo</div>
+            <div class="font-display text-lg text-cream uppercase">deamoncraft-gemma4-andy</div>
+            <p class="text-cream/60 text-sm mt-2">Gemma 4 fine-tune · schema v2 · reference cases.</p>
+          </a>
+
+          <a
+            href={s.kaggle_article_url || '#'}
+            target="_blank"
+            rel="noopener"
+            class="p-6 border-2 border-cream/30 bg-navy-deep/60 hover:border-cream hover:bg-cream/5 rounded transition block"
+          >
+            <div class="font-pixel text-[10px] tracking-[0.3em] text-cream/80 mb-2">▸ article</div>
+            <div class="font-display text-lg text-cream uppercase">Kaggle write-up</div>
+            <p class="text-cream/60 text-sm mt-2">Full argument under 1500 words.</p>
+          </a>
+
+          <a
+            href="#full-session"
+            class="p-6 border-2 border-grass/40 bg-navy-deep/60 hover:border-grass hover:bg-grass/5 rounded transition block"
+          >
+            <div class="font-pixel text-[10px] tracking-[0.3em] text-grass-light mb-2">▸ session</div>
+            <div class="font-display text-lg text-cream uppercase">Full session video</div>
+            <p class="text-cream/60 text-sm mt-2">Uncut, live, auditable.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 12 · FOOTER                                                  -->
+    <!-- ============================================================ -->
+    <footer class="px-6 py-10 border-t border-cream/10">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3 text-cream/55">
+        <p class="font-pixel text-[10px] tracking-[0.3em] uppercase">DaemonCraft · AlterMundi · 2026</p>
+        <p class="font-pixel text-[10px] tracking-[0.3em] uppercase">submission · Gemma 4 Good Hackathon</p>
+      </div>
+    </footer>
+  </main>
+</Layout>

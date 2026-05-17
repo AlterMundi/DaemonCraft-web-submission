@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Observability dashboard placeholder">
+  <rect width="1600" height="900" fill="#050B15"/>
+  <rect x="40" y="40" width="1520" height="820" rx="14" fill="#0A1428" stroke="#2C3E50"/>
+  <g font-family="JetBrains Mono, monospace" fill="#E8E8ED">
+    <text x="80" y="100" font-size="18" fill="#00D9FF">▸ daemoncraft / observability</text>
+    <text x="80" y="135" font-size="14" opacity="0.7">plan_id: pl_482 · session: live · last_step: mine_oak_log</text>
+
+    <text x="80" y="200" font-size="14" fill="#FFB800">STATE</text>
+    <text x="80" y="230" font-size="14" opacity="0.85">x:  124   y:  68   z: -88   yaw: 32°</text>
+    <text x="80" y="260" font-size="14" opacity="0.85">inv: oak_log×4 · sticks×2 · seeds×8</text>
+
+    <text x="80" y="330" font-size="14" fill="#FFB800">PLAN</text>
+    <text x="80" y="360" font-size="14" opacity="0.85">▸ goto(player)        ok</text>
+    <text x="80" y="386" font-size="14" opacity="0.85">▸ scan(world_grid)    ok</text>
+    <text x="80" y="412" font-size="14" opacity="0.85">▸ mine(oak_log, 4)    running</text>
+    <text x="80" y="438" font-size="14" opacity="0.4">▸ return(player)      pending</text>
+
+    <text x="800" y="200" font-size="14" fill="#FFB800">ROUTER</text>
+    <text x="800" y="230" font-size="14" opacity="0.85">hermes  · 18 turns</text>
+    <text x="800" y="260" font-size="14" opacity="0.85">gemma   · 41 calls / ollama:gemma3</text>
+    <text x="800" y="286" font-size="14" opacity="0.85">guardian· 3 blocks (scope: 2 · safety: 1)</text>
+  </g>
+  <text x="800" y="850" text-anchor="middle" font-family="Chakra Petch, sans-serif" font-size="20" fill="#95A5A6">Dashboard placeholder · pedile a Mariano la captura real</text>
+</svg>

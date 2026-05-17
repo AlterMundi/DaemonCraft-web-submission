@@ -1,0 +1,83 @@
+---
+/*
+  DaemonCraft architecture diagram.
+  Source: /home/saira/daemonmatrix-final-administrativo/entregables/grafico.png
+  Hand-crafted Minecraft-cinematic illustration provided by AlterMundi.
+
+  Three variants:
+    • architecture.jpg          → 1600px, 417 KB (web hero/section)
+    • architecture-thumb.jpg    → 800px,  100 KB (gallery thumbnail)
+    • architecture-original.png → 2816×1536, 9 MB (full quality, downloadable)
+*/
+
+const base = import.meta.env.BASE_URL;
+---
+
+<figure class="arch-figure">
+  <a
+    href={`${base}architecture-original.png`}
+    target="_blank"
+    rel="noopener"
+    aria-label="Open full-resolution architecture diagram (PNG, 9 MB)"
+    class="arch-link"
+  >
+    <img
+      src={`${base}architecture.jpg`}
+      alt="DaemonCraft architecture: the child speaks to Hermes (narrative, memory, safety, upstream policy), Hermes delegates clear body intents to Gemma-Andy (a local Gemma 4 model running the embodiment loop), embodied-service validates and dispatches structured body actions through Mineflayer Bot, and Mineflayer executes them inside Minecraft. Gemma-Andy reads a compact ASCII-style world_state and operates only on a constrained set of body primitives."
+      width="1600"
+      height="873"
+      loading="lazy"
+      class="arch-img"
+    />
+  </a>
+  <figcaption class="arch-caption">
+    <span class="font-pixel text-[10px] tracking-[0.3em] text-cream/55 uppercase">
+      In-game DaemonCraft stack · functional flow
+    </span>
+    <span class="text-cream/45 text-xs">
+      Click the image to open full resolution.
+    </span>
+  </figcaption>
+</figure>
+
+<style>
+  .arch-figure {
+    max-width: 1280px;
+    margin: 0 auto;
+    background: radial-gradient(ellipse at center top, rgba(0,217,255,0.06), transparent 60%);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 1px rgba(232,232,237,0.06),
+      0 24px 60px -20px rgba(0,217,255,0.18);
+  }
+  .arch-link {
+    display: block;
+    line-height: 0;
+    overflow: hidden;
+    border-radius: 16px;
+  }
+  .arch-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    transition: transform 0.5s ease;
+    image-rendering: -webkit-optimize-contrast;
+  }
+  .arch-link:hover .arch-img {
+    transform: scale(1.01);
+  }
+  .arch-caption {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px 4px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .arch-img { transition: none; }
+    .arch-link:hover .arch-img { transform: none; }
+  }
+</style>
