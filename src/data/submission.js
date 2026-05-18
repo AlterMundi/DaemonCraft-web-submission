@@ -16,13 +16,19 @@ export const submission = {
   antigravity_url: 'https://antigravity.google',
 
   // === Images (relative to /public) ===
-  cover_image: '/placeholders/cover.svg',
-  gameplay_1: '/placeholders/gameplay-1.svg',
-  gameplay_2: '/placeholders/gameplay-2.svg',
-  dashboard_image: '/placeholders/dashboard.svg',
-  technical_image: '/placeholders/technical.svg',
+  cover_image: '/media/4922583338346810464.jpg',
+  gameplay_1: '/media/4922583338346810463.jpg',
+  gameplay_2: '/media/4922583338346810463.jpg',
+  dashboard_image: '/media/4922583338346810463.jpg',
+  technical_image: '/media/captura_ollama_gemma_media_gallery.png',
   ascii_world_state_image: '/placeholders/ascii-world.svg',
   architecture_diagram: '/architecture-thumb.jpg',  // versión grande inline vía ArchitectureDiagram.astro
+
+  // === Videos locales (LFS · servidos desde /public/media/) ===
+  // poster usa la captura del dashboard como thumbnail consistente
+  video_poster: '/media/4922583338346810463.jpg',
+  video_local_short_url: '/media/Nace_allay.mp4',
+  video_local_full_url: '/media/VID_20260516_114933.mp4',
 
   // === Copy oficial (locked by handoff) ===
   copy: {
@@ -94,11 +100,64 @@ export const submission = {
   ],
 
   gallery: [
-    { key: 'cover', title: 'Cover', caption: 'Player + bot + world. One frame that summarizes the demo.' },
-    { key: 'gameplay_1', title: 'Gameplay · companion', caption: 'Bot following, gathering, acting in-world.' },
-    { key: 'gameplay_2', title: 'Gameplay · embodied task', caption: 'Mining / gather / return / inventory.' },
-    { key: 'dashboard', title: 'Dashboard', caption: 'Visible plan, state and traceability.' },
-    { key: 'technical', title: 'Ollama + Gemma 4', caption: 'Local inference loop and compact world_state.' },
-    { key: 'architecture', title: 'Architecture', caption: 'Hermes → Gemma-Andy → embodied-service → Mineflayer.' },
+    {
+      type: 'image',
+      src: '/media/4922583338346810464.jpg',
+      title: 'Cover',
+      caption: 'Player + Allay companion. One frame that summarizes the demo.',
+    },
+    {
+      type: 'image',
+      src: '/media/4922583338346810463.jpg',
+      title: 'Live dashboard',
+      caption: 'Real session · Minecraft + Ollama (gemma-andy:e4b) + DaemonCraft Dashboard with visible tool calls and embodied plan.',
+    },
+    {
+      type: 'image',
+      src: '/media/captura_ollama_gemma_media_gallery.png',
+      title: 'Ollama + Gemma 4',
+      caption: 'gemma-andy:e4b-v2-2-3-q8_0 · 11 GB · 100% GPU. Local inference loop in action.',
+    },
+    {
+      type: 'video',
+      src: '/media/Nace_allay.mp4',
+      poster: '/media/4922583338346810464.jpg',
+      title: 'Allay is born',
+      caption: 'First moment the companion appears in the world.',
+    },
+    {
+      type: 'video',
+      src: '/media/corriendo_esquivando_pozos.mp4',
+      poster: '/media/4922583338346810463.jpg',
+      title: 'Embodied movement',
+      caption: 'Running and dodging holes — embodied navigation under live control.',
+    },
+    {
+      type: 'video',
+      src: '/media/VID_20260516_142852.mp4',
+      poster: '/media/4922583338346810463.jpg',
+      title: 'Live session · short',
+      caption: 'Uncut excerpt of an embodied session on 2026-05-16.',
+    },
+    {
+      type: 'video',
+      src: '/media/VID_20260516_115307.mp4',
+      poster: '/media/4922583338346810463.jpg',
+      title: 'Live session · medium',
+      caption: 'Longer live cut: bot following, scanning, executing tool calls.',
+    },
+    {
+      type: 'video',
+      src: '/media/VID_20260516_114933.mp4',
+      poster: '/media/4922583338346810463.jpg',
+      title: 'Live session · full',
+      caption: 'Full uncut session — Hermes + Gemma-Andy + embodied-service end to end.',
+    },
+    {
+      type: 'image',
+      src: '/architecture-thumb.jpg',
+      title: 'Architecture',
+      caption: 'Hermes → Gemma-Andy → embodied-service → Mineflayer → Minecraft.',
+    },
   ],
 };

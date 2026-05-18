@@ -15,4 +15,7 @@ HermesCraft_Investor_Deck*.pdf
 video-production/
 *.mp4
 *.mov
+# Permitir media oficial del hub (vía LFS)
+!public/media/**
+!mediaentregable/**
 __pycache__/
