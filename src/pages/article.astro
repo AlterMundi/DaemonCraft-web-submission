@@ -1,0 +1,157 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const base = import.meta.env.BASE_URL;
+const title = 'DaemonCraft · article · Gemma 4 Good Hackathon';
+const description = 'DaemonCraft combines Hermes, gAndy, Ollama and Minecraft to turn screen time into guided, creative, visible play. Full write-up under 1500 words.';
+---
+
+<Layout title={title} description={description}>
+  <!-- TOP NAV -->
+  <nav class="fixed top-0 inset-x-0 z-50 bg-navy-deep/80 backdrop-blur border-b border-daemon/15">
+    <div class="max-w-3xl mx-auto px-6 py-3 flex items-center justify-between text-sm gap-4">
+      <a href={base} class="font-display tracking-widest text-cream uppercase">DaemonCraft</a>
+      <a href={base} class="font-pixel text-[10px] tracking-[0.3em] text-cream/70 hover:text-daemon transition uppercase">
+        ← back to hub
+      </a>
+    </div>
+  </nav>
+
+  <main class="px-6 pt-28 pb-32">
+    <article class="max-w-3xl mx-auto">
+      <!-- Header -->
+      <header class="mb-14">
+        <div class="inline-block mb-5 px-3 py-1 border border-cream/30 bg-cream/5">
+          <span class="font-pixel text-[10px] tracking-[0.35em] text-cream/80 uppercase">§ article · write-up</span>
+        </div>
+
+        <h1 class="font-display text-4xl md:text-5xl uppercase text-cream leading-[1.05] neon-cyan mb-6">
+          DaemonCraft: a local-first embodied companion in Minecraft, powered by Gemma 4
+        </h1>
+
+        <p class="text-cream/80 text-xl leading-snug border-l-4 border-daemon pl-4">
+          DaemonCraft combines Hermes, <strong class="text-daemon">gAndy</strong>, Ollama and Minecraft to turn screen time into guided, creative, visible play.
+        </p>
+
+        <div class="mt-6 flex flex-wrap items-center gap-4 text-cream/55 font-pixel text-[10px] tracking-[0.3em] uppercase">
+          <span>▸ Gemma 4 Good Hackathon</span>
+          <span class="opacity-50">·</span>
+          <span>under 1500 words</span>
+          <span class="opacity-50">·</span>
+          <a href={`${base}article.md`} class="hover:text-daemon transition">▸ raw markdown</a>
+        </div>
+      </header>
+
+      <!-- Body -->
+      <div class="article-prose space-y-6 text-cream/85 text-lg leading-relaxed">
+        <p>
+          Children already spend hours in digital worlds. The educational question is what kind of experience fills that time. Much of it still leans toward passive consumption: endless stimulation, little continuity, and few tools that help a child build something of their own. Parents feel that tension clearly. They want to protect attention and safety while preserving one of the few spaces where curiosity, play and long-form creation can still happen.
+        </p>
+
+        <p>
+          DaemonCraft begins from that problem. It places a persistent companion inside Minecraft: a daemon with memory, visible action and continuity across play. The system can move through the world, remember places, help with tasks, support shared stories and remain present as a partner rather than a detached assistant. Minecraft is the right medium because it already gives children a language of construction, exploration, cooperation and narrative. Actions inside that world are concrete. They can be seen, checked and discussed.
+        </p>
+
+        <p>
+          The project turns screen time into accompanied creation. A child can ask for help building a base, exploring a cave, finding a route, continuing a story or remembering a place that matters in the world. That interaction keeps imagination, attention and learning inside the same shared scene. The companion supports play from within the world itself, where its help has immediate consequences and visible results.
+        </p>
+
+        <p>
+          DaemonCraft works through a hybrid architecture with clear roles. Hermes carries the narrative, pedagogical and control layer. It interprets intent, keeps long-range context, asks for clarification when a request is vague, and protects the interaction when safety or scope require intervention. <strong class="text-daemon">gAndy</strong> carries the embodiment logic of the stack. It takes a clear body-oriented intent together with a structured world state and returns body actions that can be executed inside Minecraft.
+        </p>
+
+        <p>
+          The body loop is explicit. The embodied-service composes <code>world_state</code>, calls <strong class="text-daemon">gAndy</strong> through Ollama, validates the JSON contract, and dispatches the resulting actions to Mineflayer, which operates the bot inside the server. <code>world_state</code> carries the information the body needs: position, inventory, nearby blocks, remembered places, entities and other local state. It also carries <strong class="text-holodeck">mBit</strong>, a compact text-native spatial representation of nearby space. mBit gives the stack a readable local map without flooding the model with a large raw dump of the environment. In practice, it already participates in the working runtime both when Hermes acts directly through Mineflayer and when gAndy operates inside the constrained primitive loop.
+        </p>
+
+        <p>
+          This architecture supports <strong class="text-cream">progressive delegation</strong>. Hermes keeps direct access to the body and handles the tasks that still belong in the higher control layer. gAndy absorbs the body primitives that have already been measured, debugged and validated as reliable. Each primitive migrates into gAndy's scope only after passing that gate. The result is a system that stays operational, observable and stable while the model's role grows through real engineering work rather than wishful thinking.
+        </p>
+
+        <p>
+          Gemma 4 matters here for specific reasons. It runs locally through Ollama in the current prototype, which keeps the embodied loop private, inspectable and inexpensive to operate. That local-first design also keeps the project aligned with the realities of schools, communities and families that need control over infrastructure and data. In deployment, the same approach supports shared infrastructure under community, school or regional control while preserving a privacy-respecting architecture and a low marginal cost per interaction.
+        </p>
+
+        <p>
+          Gemma 4 also fits the shape of the task. The model is not being asked to improvise as a general conversational agent for every layer of the system. It is being used where a compact, structured body reasoner is valuable: translating intent and context into <code>body_plan</code>, <code>checks</code> and <code>tool_calls</code>. That division reduces token cost as well. Repeated body orchestration does not need to consume frontier-model tokens step after step if a smaller local model can carry a bounded part of that work with the right contract and the right state representation.
+        </p>
+
+        <p>
+          We tested the system on a real Minecraft stack: PaperMC, a live Mineflayer bot, a local embodied-service and gAndy served through Ollama. Our initial field validation measured a focused set of body primitives including <code>follow</code>, <code>goto</code>, <code>move_away</code>, <code>mine_block</code>, <code>collect_drops</code>, <code>get_inventory</code>, <code>remember_here</code> and <code>goto_remembered_place</code>. The broader stack adds canonical tests and benchmarks as well: deterministic policy by category, versioned experiment setup, <code>world_state</code> and mBit validation, and unit tests for the embodiment bridge. Early pilot work around mBit is also shaping the next training loop through local snapshots and before/after verification episodes, so the same compact spatial signal that already serves runtime execution can become training material for local tactics and local self-verification.
+        </p>
+
+        <!-- Highlighted measurement -->
+        <aside class="my-10 p-6 border-2 border-grass/40 bg-grass/5 rounded-lg">
+          <div class="font-pixel text-[10px] tracking-[0.35em] text-grass-light uppercase mb-3">▸ field measurement · 2026-05-15</div>
+          <div class="grid sm:grid-cols-3 gap-4 mb-3">
+            <div>
+              <div class="font-display text-4xl text-daemon">78%</div>
+              <div class="text-cream/70 text-sm mt-1">resolved by gAndy in its reliable zone</div>
+            </div>
+            <div>
+              <div class="font-display text-4xl text-holodeck">22%</div>
+              <div class="text-cream/70 text-sm mt-1">resolved upstream by Hermes</div>
+            </div>
+            <div>
+              <div class="font-display text-4xl text-grass-light">0%</div>
+              <div class="text-cream/70 text-sm mt-1">unresolved in the slice</div>
+            </div>
+          </div>
+          <p class="text-cream/70 text-sm italic">
+            That evaluation produced a concrete operating rule: reliability comes from routing work to the right layer.
+          </p>
+        </aside>
+
+        <p>
+          The policy layer that makes that possible stays intentionally simple and general. Hermes normalizes intents, filters scope, detects ambiguity, narrows <code>allowed_tools</code> by category and decomposes multi-step tasks into atomic steps when needed. A vague request triggers clarification. A request outside the body layer is handled upstream. A clear request that belongs to a validated primitive reaches gAndy inside a constrained action palette. This keeps the system legible for operators and dependable for users.
+        </p>
+
+        <p>
+          That same structure supports <strong class="text-cream">safety and trust</strong>. A companion for children needs visible boundaries as much as it needs capability. DaemonCraft keeps dashboards, logs, allowed-tool policies and a clean separation between narrative, body and execution. The system can show what happened, why it happened and which layer made the decision. That observability is part of the product, not an afterthought.
+        </p>
+
+        <p>
+          The educational and social stakes are straightforward. DaemonCraft supports curiosity, creative persistence and collaborative problem solving inside a world children already inhabit willingly. It opens a path toward safer, more meaningful screen time in contexts where tutoring, extracurricular support and expensive proprietary tools remain out of reach. A locally operated companion can be shared across family, school or community infrastructure while keeping the experience more accountable and more adaptable to the people who use it.
+        </p>
+
+        <p>
+          The horizon is equally clear. More body primitives can move into gAndy as the training and evaluation loop matures. More bots can inhabit shared worlds. The same daemon architecture can later travel beyond Minecraft into other tools, environments and educational interfaces. Minecraft is the first body because it makes action, feedback and co-creation visible. From there, the larger idea becomes tangible: an AI companion that helps children build, remember, learn and create from inside the worlds where their attention already lives.
+        </p>
+      </div>
+
+      <!-- Footer CTA back to hub -->
+      <footer class="mt-16 pt-10 border-t border-cream/10 flex flex-wrap gap-4">
+        <a
+          href={base}
+          class="px-6 py-3 font-display text-sm uppercase tracking-widest bg-daemon text-navy-deep rounded hover:bg-daemon-light transition"
+        >
+          ← back to submission hub
+        </a>
+        <a
+          href={`${base}#video`}
+          class="px-6 py-3 font-display text-sm uppercase tracking-widest border-2 border-cream/40 text-cream hover:border-daemon hover:text-daemon transition rounded"
+        >
+          watch the 3-minute demo
+        </a>
+      </footer>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .article-prose code {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.92em;
+    background: rgba(0, 217, 255, 0.08);
+    border: 1px solid rgba(0, 217, 255, 0.25);
+    color: #00D9FF;
+    padding: 0.05em 0.45em;
+    border-radius: 4px;
+  }
+  .article-prose p {
+    text-wrap: pretty;
+  }
+  .article-prose strong {
+    font-weight: 600;
+  }
+</style>

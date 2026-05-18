@@ -11,7 +11,7 @@ export const submission = {
   // === Repo + Article ===
   repo_public_url: 'https://github.com/nicoechaniz/DaemonCraft',          // repo del juego
   repo_finetune_url: 'https://github.com/Mar-IA-no/deamoncraft-gemma4-andy', // repo del fine-tuning Gemma 4
-  kaggle_article_url: '',           // pegar URL de Kaggle cuando esté publicado
+  kaggle_article_url: '/article/',  // write-up local hosteado en /article (también disponible en /article.md)
   ollama_model_url: 'https://ollama.com/library/gemma3',
   antigravity_url: 'https://antigravity.google',
 
@@ -149,13 +149,7 @@ export const submission = {
       type: 'image',
       src: '/media/4922583338346810463.jpg',
       title: 'Live cockpit',
-      caption: 'Real session · Minecraft + Ollama (gemma-andy:e4b) + DaemonCraft Dashboard side by side.',
-    },
-    {
-      type: 'image',
-      src: '/media/captura_ollama_gemma_media_gallery.png',
-      title: 'Ollama + Gemma 4',
-      caption: 'gemma-andy:e4b-v2-2-3-q8_0 · 11 GB · 100% GPU. Local inference loop in action.',
+      caption: 'Real session · Minecraft + Ollama (gemma-andy:e4b · 11 GB · 100% GPU) + DaemonCraft Dashboard side by side.',
     },
     {
       type: 'video',
