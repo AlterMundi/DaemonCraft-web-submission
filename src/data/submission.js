@@ -3,7 +3,7 @@
 
 export const submission = {
   // === Video ===
-  video_principal_url: '',          // YouTube embed (e.g. https://www.youtube.com/embed/XXXX)
+  video_principal_url: 'https://www.youtube.com/embed/yAY89Qjs0RA',
   video_principal_title: 'DaemonCraft · 3-minute submission',
   video_largo_url: '',              // YouTube embed for full uncut session
   video_largo_title: 'DaemonCraft · uncut live session',
