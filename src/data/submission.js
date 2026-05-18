@@ -19,14 +19,41 @@ export const submission = {
   cover_image: '/media/4922583338346810464.jpg',
   gameplay_1: '/media/4922583338346810463.jpg',
   gameplay_2: '/media/4922583338346810463.jpg',
-  dashboard_image: '/media/4922583338346810463.jpg',
+  dashboard_image: '/media/dashboard.jpg',
   technical_image: '/media/captura_ollama_gemma_media_gallery.png',
-  ascii_world_state_image: '/placeholders/ascii-world.svg',
+  gandy_terminal_image: '/media/gandy-terminal.jpg',
   architecture_diagram: '/architecture-thumb.jpg',  // versión grande inline vía ArchitectureDiagram.astro
+
+  // === Compact world_state · 4 modos del visor mBit 3D ===
+  // De voxel sólido a etiquetas ASCII: lo que efectivamente recibe gAndy.
+  world_state_views: [
+    {
+      src: '/media/world-state-block.jpg',
+      label: 'block',
+      caption: 'Solid voxel view — what the player sees.',
+    },
+    {
+      src: '/media/world-state-wire.jpg',
+      label: 'wire',
+      caption: 'Wireframe — block geometry without textures.',
+    },
+    {
+      src: '/media/world-state-both.jpg',
+      label: 'both',
+      caption: 'Voxels + ASCII overlay — bridging the abstraction.',
+    },
+    {
+      src: '/media/world-state-char.jpg',
+      label: 'char',
+      caption: 'Pure ASCII spatial grid — the actual world_state delivered to gAndy.',
+    },
+  ],
+  // Legacy alias (compat): primer modo char usado como hero del world_state.
+  ascii_world_state_image: '/media/world-state-char.jpg',
 
   // === Videos locales (LFS · servidos desde /public/media/) ===
   // poster usa la captura del dashboard como thumbnail consistente
-  video_poster: '/media/4922583338346810463.jpg',
+  video_poster: '/media/dashboard.jpg',
   video_local_short_url: '/media/Nace_allay.mp4',
   video_local_full_url: '/media/VID_20260516_114933.mp4',
 
@@ -108,9 +135,21 @@ export const submission = {
     },
     {
       type: 'image',
+      src: '/media/dashboard.jpg',
+      title: 'DaemonCraft Dashboard',
+      caption: 'Status · plan · live chat · action log · inventory. The single pane that makes every embodied step visible and auditable.',
+    },
+    {
+      type: 'image',
+      src: '/media/gandy-terminal.jpg',
+      title: 'gAndy in action',
+      caption: 'Terminal stream of [GANDY] intents — navigate, smelt, toss, scan, goto — with timings and OK/FAIL outcomes.',
+    },
+    {
+      type: 'image',
       src: '/media/4922583338346810463.jpg',
-      title: 'Live dashboard',
-      caption: 'Real session · Minecraft + Ollama (gemma-andy:e4b) + DaemonCraft Dashboard with visible tool calls and embodied plan.',
+      title: 'Live cockpit',
+      caption: 'Real session · Minecraft + Ollama (gemma-andy:e4b) + DaemonCraft Dashboard side by side.',
     },
     {
       type: 'image',

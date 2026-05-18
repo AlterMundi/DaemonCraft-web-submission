@@ -212,9 +212,29 @@ const base = import.meta.env.BASE_URL;
           <a href={s.ollama_model_url} target="_blank" rel="noopener" class="font-display text-cream uppercase tracking-wider hover:text-daemon transition">Ollama · gemma3</a>
         </div>
 
-        <div class="mt-10">
-          <div class="font-pixel text-[10px] tracking-[0.3em] text-cream/50 uppercase mb-2">compact world_state</div>
-          <img src={`${base}${s.ascii_world_state_image.replace(/^\//,'')}`} alt="ASCII spatial grid sent to gAndy as compact world_state" class="w-full max-w-3xl rounded border border-cream/10" />
+        <div class="mt-12">
+          <div class="font-pixel text-[10px] tracking-[0.3em] text-cream/50 uppercase mb-3">compact world_state · four lenses on the same scene</div>
+          <p class="text-cream/70 text-sm max-w-3xl leading-relaxed mb-6">
+            The mBit 3D viewer renders the same chunk of world in four progressively-abstracted modes. The bottom-right ASCII grid is what gAndy actually receives — compact, readable, and cheap to reason about.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-3">
+            {s.world_state_views.map((v) => (
+              <figure class="relative overflow-hidden rounded border border-holodeck/20 bg-navy-deep/70">
+                <img
+                  src={`${base}${v.src.replace(/^\//,'')}`}
+                  alt={`mBit 3D · ${v.label} mode · ${v.caption}`}
+                  loading="lazy"
+                  class="w-full h-56 object-cover"
+                />
+                <span class="absolute top-2 left-2 font-pixel text-[9px] tracking-[0.3em] uppercase px-2 py-1 bg-holodeck/90 text-navy-deep rounded-sm">
+                  {v.label}
+                </span>
+                <figcaption class="p-3 border-t border-cream/10 text-cream/70 text-xs leading-snug">
+                  {v.caption}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </div>
     </section>
