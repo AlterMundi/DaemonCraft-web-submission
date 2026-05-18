@@ -161,9 +161,9 @@ export const submission = {
     {
       type: 'video',
       src: '/media/corriendo_esquivando_pozos.mp4',
-      poster: '/media/4922583338346810463.jpg',
+      poster: '/media/embodied-movement-poster.png',
       title: 'Embodied movement',
-      caption: 'Running and dodging holes — embodied navigation under live control.',
+      caption: 'Running and dodging holes — embodied navigation under live control, with the mBit 3D viewer overlaying the world_state in the top-right.',
     },
     {
       type: 'video',
