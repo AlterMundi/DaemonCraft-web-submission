@@ -13,7 +13,9 @@ HermesCraft_Investor_Deck*.pdf
 
 # Assets pesados (video, raw)
 video-production/
+peques/
 *.mp4
+*.MP4
 *.mov
 # Permitir media oficial del hub (vía LFS)
 !public/media/**
