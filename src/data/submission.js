@@ -34,21 +34,21 @@ export const submission = {
   copy: {
     hero_title: 'DaemonCraft',
     hero_subtitle: 'A local-first embodied companion in Minecraft powered by Gemma 4',
-    hero_line: 'Hermes guides the story. Gemma-Andy handles embodied action. Minecraft makes every step visible.',
+    hero_line: 'Hermes guides the story. gAndy handles embodied action. Minecraft makes every step visible.',
     cta_primary: 'Watch the 3-minute demo',
     cta_secondary: 'View full live session',
 
     architecture_quote:
-      'Hermes keeps direct control when needed; Gemma-Andy progressively absorbs only the embodied capabilities that have already been measured as reliable.',
+      'Hermes keeps direct control when needed; gAndy progressively absorbs only the embodied capabilities that have already been measured as reliable.',
     world_state_quote:
-      'The world state includes compact ASCII-style spatial grids, giving Gemma-Andy a readable local map without sending huge raw game-state dumps.',
+      'The world state includes compact ASCII-style spatial grids, giving gAndy a readable local map without sending huge raw game-state dumps.',
 
     demo_short:
       'What you see here is not a chatbot mockup. It is a live embodied system operating inside Minecraft, with visible actions, observable state, and a progressive delegation model.',
     gemma_short:
       'Gemma 4 runs locally through Ollama and participates directly in the embodied loop, producing structured action outputs that can be validated and executed in the world.',
     world_state_short:
-      'The model does not receive a massive raw dump of the game. DaemonCraft gives Gemma-Andy a compact ASCII-style spatial representation of the nearby world, keeping the local context readable and efficient.',
+      'The model does not receive a massive raw dump of the game. DaemonCraft gives gAndy a compact ASCII-style spatial representation of the nearby world, keeping the local context readable and efficient.',
     limits_short:
       'We do not pretend Gemma solves every case alone. Hermes filters ambiguity, scope and safety first, and delegates only the embodied capabilities that have already been measured as reliable.',
     full_session_short:
@@ -93,7 +93,7 @@ export const submission = {
   // === Architecture nodes (left to right) ===
   architecture: [
     { id: 'hermes', label: 'Hermes', sub: 'narrative · pedagogy · direct control', tone: 'daemon' },
-    { id: 'gemma', label: 'Gemma-Andy', sub: 'embodiment logic', tone: 'holodeck' },
+    { id: 'gemma', label: 'gAndy', sub: 'embodiment logic', tone: 'holodeck' },
     { id: 'embodied', label: 'embodied-service', sub: 'bridge · validation', tone: 'cream' },
     { id: 'mineflayer', label: 'Mineflayer', sub: 'execution layer', tone: 'cream' },
     { id: 'minecraft', label: 'Minecraft', sub: 'shared world', tone: 'grass' },
@@ -151,13 +151,13 @@ export const submission = {
       src: '/media/VID_20260516_114933.mp4',
       poster: '/media/4922583338346810463.jpg',
       title: 'Live session · full',
-      caption: 'Full uncut session — Hermes + Gemma-Andy + embodied-service end to end.',
+      caption: 'Full uncut session — Hermes + gAndy + embodied-service end to end.',
     },
     {
       type: 'image',
       src: '/architecture-thumb.jpg',
       title: 'Architecture',
-      caption: 'Hermes → Gemma-Andy → embodied-service → Mineflayer → Minecraft.',
+      caption: 'Hermes → gAndy → embodied-service → Mineflayer → Minecraft.',
     },
   ],
 };
