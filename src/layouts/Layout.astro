@@ -4,27 +4,132 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
 }
 
 const {
-  title = 'DaemonCraft — Tu Daemon en Minecraft',
-  description = 'Un agente autónomo de IA que vive en tu servidor de Minecraft. Tu compañero. Tu mundo. Tu aventura.',
+  title = 'DaemonCraft — Your Daemon in Minecraft',
+  description = 'Local-first embodied AI companion in Minecraft, powered by Gemma 4. Hermes drives the narrative, gAndy drives the body. Submission to the Gemma 4 Good Hackathon.',
+  image = '/media/4922583338346810464.jpg',
 } = Astro.props;
 
 const base = import.meta.env.BASE_URL;
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://daemoncraft.altermundi.net';
+const canonical = new URL(Astro.url.pathname, siteUrl).toString();
+const ogImage = new URL(image.replace(/^\//, ''), siteUrl + '/').toString();
+
+// === Structured data (JSON-LD) ===
+// Multiple typed nodes help both Google rich-results and any LLM
+// scraping the page understand what DaemonCraft is at a glance.
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'AlterMundi',
+  legalName: 'Asociación Civil AlterMundi',
+  url: 'https://altermundi.net',
+  logo: `${siteUrl}/daemon-icon.svg`,
+  email: 'info@altermundi.net',
+  telephone: '+54-9-3547-469632',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Córdoba',
+    addressCountry: 'AR',
+  },
+  sameAs: [
+    'https://github.com/AlterMundi',
+  ],
+};
+
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'DaemonCraft · Submission Hub',
+  url: siteUrl + '/',
+  inLanguage: 'en',
+  publisher: { '@id': `${siteUrl}/#organization` },
+};
+
+const softwareApp = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'DaemonCraft',
+  applicationCategory: 'GameApplication',
+  applicationSubCategory: 'AI companion for Minecraft',
+  operatingSystem: 'Linux, macOS, Windows (Minecraft server)',
+  url: siteUrl + '/',
+  image: ogImage,
+  description:
+    'Local-first embodied AI companion that lives inside Minecraft. Hermes drives narrative and pedagogy; gAndy (a LoRA on Gemma 4 E4B-it served via Ollama) turns intent into validated in-world actions through Mineflayer. Visible, auditable, and runnable on the family or school machine without mandatory cloud dependency.',
+  softwareRequirements: 'Minecraft server, Ollama, Node.js',
+  author: { '@type': 'Organization', name: 'AlterMundi' },
+  publisher: { '@type': 'Organization', name: 'AlterMundi' },
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  isAccessibleForFree: true,
+  license: 'https://opensource.org/licenses/MIT',
+  codeRepository: 'https://github.com/nicoechaniz/DaemonCraft',
+  keywords:
+    'embodied AI, local-first, Gemma 4, Minecraft agent, Ollama, LoRA, Mineflayer, child-safe AI, open source',
+};
+
+const videoMain = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: 'DaemonCraft · 3-minute submission',
+  description:
+    'Three-minute submission video showing DaemonCraft live: cold open, problem, solution, architecture, Gemma 4 in the loop, evidence, limits and close.',
+  thumbnailUrl: 'https://i.ytimg.com/vi/yAY89Qjs0RA/maxresdefault.jpg',
+  uploadDate: '2026-05-17',
+  contentUrl: 'https://www.youtube.com/watch?v=yAY89Qjs0RA',
+  embedUrl: 'https://www.youtube.com/embed/yAY89Qjs0RA',
+  publisher: { '@type': 'Organization', name: 'AlterMundi' },
+};
+
+const videoFull = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: 'DaemonCraft · uncut live session',
+  description:
+    'Uncut live session of DaemonCraft operating inside Minecraft — auditable evidence of the embodied loop.',
+  thumbnailUrl: 'https://i.ytimg.com/vi/Zig0h_GPT6E/maxresdefault.jpg',
+  uploadDate: '2026-05-17',
+  contentUrl: 'https://www.youtube.com/watch?v=Zig0h_GPT6E',
+  embedUrl: 'https://www.youtube.com/embed/Zig0h_GPT6E',
+  publisher: { '@type': 'Organization', name: 'AlterMundi' },
+};
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0A1428" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="AlterMundi" />
+    <meta name="keywords" content="DaemonCraft, AlterMundi, Gemma 4, Minecraft, embodied AI, local-first AI, AI companion, Ollama, Mineflayer, gAndy, Hermes, open source AI, child-safe AI" />
+    <link rel="canonical" href={canonical} />
 
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="DaemonCraft" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Discovery / well-known -->
+    <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt" />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 
     <link rel="icon" type="image/svg+xml" href={`${base}daemon-icon.svg`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,6 +140,13 @@ const base = import.meta.env.BASE_URL;
     />
 
     <title>{title}</title>
+
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(organization)} />
+    <script type="application/ld+json" set:html={JSON.stringify(website)} />
+    <script type="application/ld+json" set:html={JSON.stringify(softwareApp)} />
+    <script type="application/ld+json" set:html={JSON.stringify(videoMain)} />
+    <script type="application/ld+json" set:html={JSON.stringify(videoFull)} />
   </head>
   <body class="font-body antialiased bg-navy-deep text-cream selection:bg-daemon selection:text-navy-deep">
     <slot />

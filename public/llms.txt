@@ -1,0 +1,64 @@
+# DaemonCraft
+
+> DaemonCraft is a local-first embodied AI companion that lives inside Minecraft. It is built by AlterMundi (Córdoba, Argentina) as a submission to the Google Gemma 4 "Good Hackathon". A narrative agent (Hermes) drives the story and pedagogy; a body-orchestrator (gAndy, a LoRA on top of Gemma 4 E4B-it served via Ollama) turns intent into validated in-world actions through Mineflayer. The companion is visible inside the game world — not a side-panel chatbot — and runs on the family or school machine, with no mandatory cloud dependency.
+
+## What DaemonCraft is
+
+- **Embodied, not chat.** The agent has a Minecraft avatar. Every action is observable inside the shared world (move, smelt, toss, scan, goto) instead of happening behind a chat window.
+- **Local-first.** Gemma 4 runs locally via [Ollama](https://ollama.com/library/gemma3). No required cloud round-trip, no child data leaving the household.
+- **Two minds, one world.** Hermes (narrative, pedagogy, safety, direct control) supervises and progressively delegates only the embodied capabilities that have been measured as reliable. gAndy is the body orchestrator: it receives JSON (intent, world_state, allowed tools, constraints) and returns JSON (body_plan, checks, tool_calls, failure_policy, operational_risk). JSON only, never prose.
+- **Compact world_state.** Instead of a massive raw game dump, gAndy receives an ASCII-style spatial grid of the nearby world — readable, cheap, auditable. The mBit 3D viewer renders the same chunk in four progressively-abstracted modes (block, wire, both, char); the bottom-right char view is literally what the model sees.
+- **Measured, not claimed.** Reliability is reported on a defined Tier-1 subset over real Minecraft sessions, with separate numbers for the post-mitigation critical subset. Numbers from different cuts are not mixed.
+
+## Architecture
+
+`Hermes → gAndy → embodied-service → Mineflayer → Minecraft`
+
+- **Hermes** — narrative + pedagogy + direct control + safety policy.
+- **gAndy** — embodiment logic (LoRA on Gemma 4 E4B-it, served via Ollama).
+- **embodied-service** — bridge + JSON validation before any tool touches the world.
+- **Mineflayer** — execution layer inside the Minecraft server.
+- **Minecraft** — the shared world where everything is visible.
+
+## Submission
+
+- [Submission hub (this site)](https://daemoncraft.altermundi.net/): full 12-section overview with video, architecture, results and install steps.
+- [Write-up article](https://daemoncraft.altermundi.net/article/): the full argument under 1500 words.
+- [3-minute demo video](https://www.youtube.com/watch?v=yAY89Qjs0RA): cold-open · problem · solution · architecture · Gemma 4 in the loop · evidence · limits · close.
+- [Full uncut live session](https://www.youtube.com/watch?v=Zig0h_GPT6E): 10–20 minute auditable run.
+
+## Repositories
+
+- [DaemonCraft game repo (server, bots, embodied-service)](https://github.com/nicoechaniz/DaemonCraft): the full local-first game stack. Three steps to a working bot inside a local Minecraft server.
+- [gAndy fine-tune repo](https://github.com/Mar-IA-no/deamoncraft-gemma4-andy): Gemma 4 LoRA adapter, training methodology, schema v2, reference cases and field-validated reliability numbers.
+- [Submission hub source](https://github.com/AlterMundi/DaemonCraft-web-submission): source of this site.
+
+## Why Gemma 4
+
+- **Local-first** — runs on the family or school machine. No mandatory cloud.
+- **Ollama-served** — standard runtime, easy to swap and audit.
+- **Structured tool use** — JSON outputs validated before they touch the world.
+- **Low marginal cost** — repeatable embodied tasks leave frontier-model token spend behind.
+- **Self-hostable** — families, schools and cooperatives can host the companion themselves.
+- **Compact world state** — ASCII-style local map keeps spatial context readable and efficient.
+
+## Limits and mitigation
+
+DaemonCraft does not pretend Gemma solves every case alone. Ambiguity and out-of-scope requests are filtered upstream by Hermes. Safety policy runs before any tool call reaches the world. gAndy only absorbs capabilities that already pass the reliability bar on real sessions.
+
+## Run it locally
+
+1. Install [Antigravity](https://antigravity.google) — Google's AI-native IDE, which reads errors and suggests fixes while DaemonCraft is being set up.
+2. `git clone https://github.com/nicoechaniz/DaemonCraft` and follow the README. Server, bots and embodied-service all live in this single repo.
+3. Join the local Minecraft server and type in chat: `@yourAgentName follow me`.
+
+## Team and contact
+
+- **Asociación Civil AlterMundi** — Córdoba, Argentina.
+- Email: info@altermundi.net
+- Phone: +54 9 3547 469632
+
+## Optional
+
+- [Ollama gemma3 model card](https://ollama.com/library/gemma3): the runtime that serves the base model locally.
+- [Antigravity (Google AI-native IDE)](https://antigravity.google): used during install to debug setup.
